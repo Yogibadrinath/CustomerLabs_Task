@@ -29,8 +29,19 @@ const SaveSegment: React.FC = () => {
   const handleInputChange = (fieldName: keyof FormData, value: any) => {
     setFormData((prevData) => ({
       ...prevData,
-      [fieldName]: fieldName == "schema" ? [...prevData.schema, JSON.parse(value)] : value
+      [fieldName]:
+        fieldName === "schema" ? [
+            ...prevData.schema
+              .filter((schem) =>
+                addSchemaDropdown.some(
+                  (addschem) => addschem.id === schem.id && addschem.filter === true
+                )
+              ),
+            JSON.parse(value),
+          ]
+          : value,
     }));
+    console.log(addSchemaDropdown)
   };
 
   const handleAddSchema = () => {
@@ -124,13 +135,6 @@ const SaveSegment: React.FC = () => {
         body: JSON.stringify(payload),
         mode: "no-cors"
       });
-
-
-      if (response) {
-        console.log(response);
-      } else {
-        console.log(response);
-      }
       setAddSchemaDropdown(initialValue)
       setFormData((prev) => ({
         ...prev,
@@ -140,6 +144,7 @@ const SaveSegment: React.FC = () => {
       toast.success("Form Saved Successfully!!!");
     } catch (err) {
       console.log(err)
+      toast.error("Unable to Save Form!!!");
     }
 
 

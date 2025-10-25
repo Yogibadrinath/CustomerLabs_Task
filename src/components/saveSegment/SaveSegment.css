@@ -69,8 +69,8 @@
 }
 
 .fixed-bottom-div {
-    /* position: fixed;
-    bottom: 0; */
+    position: fixed;
+    bottom: 0;
     padding: 10px;
 }
 
