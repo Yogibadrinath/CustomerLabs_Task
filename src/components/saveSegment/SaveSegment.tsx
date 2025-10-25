@@ -173,7 +173,7 @@ const SaveSegment: React.FC = () => {
           <form onSubmit={handleSubmit}>
             <div className="row">
               <div className="col-12 col-sm-12 col-md-12 col-lg-12 saving-segment d-flex">
-                <span><i className="fa-solid fa-arrow-left"></i></span>
+                <span><i className="fa-solid fa-arrow-left cursor-pointer" onClick={() => setIsOpen(false)}></i></span>
                 <h5 className="mx-2">Saving Segment</h5>
               </div>
             </div>
